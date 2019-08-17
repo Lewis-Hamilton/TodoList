@@ -5,16 +5,18 @@ const useInputValue = initialValue => {
 
   return {
     value,
-    onChange: e => setValue(e.target.value)
+    onChange: e => setValue(e.target.value),
+    resetValue: () => setValue("")
   };
 };
 
 export default ({onSubmit}) => {
-  const text = useInputValue("");
+  const {resetValue, ...text} = useInputValue("");
   return (
   <form onSubmit={e => {
     e.preventDefault();
     onSubmit(text.value);
+    resetValue();
   }}>
     <input {...text}/>
     </form>
