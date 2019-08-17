@@ -9,13 +9,14 @@ const useInputValue = initialValue => {
   };
 };
 
-export default () => {
+export default ({onSubmit}) => {
   const text = useInputValue("");
-  const email = useInputValue("");
   return (
-  <div>
+  <form onSubmit={e => {
+    e.preventDefault();
+    onSubmit(text.value);
+  }}>
     <input {...text}/>
-    <input {...email}/>
-    </div>
+    </form>
   );
 }
